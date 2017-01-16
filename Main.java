@@ -37,8 +37,6 @@ class MainFrame extends JFrame{
 }
 
 class MainPanel extends JPanel implements KeyListener{
-		Parameter<Double> p = new Parameter<>(12.5);
-		Parameter<Double> p2 = new Parameter<>(p);
 	MainPanel() {
 		setPreferredSize(new Dimension(500,500));
 		addKeyListener(this);
