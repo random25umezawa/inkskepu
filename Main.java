@@ -10,6 +10,14 @@ import org.w3c.dom.Element;
 
 class Main{
 	public static void main(String[] args) {
+
+		Parameter<Double> p = new Parameter<>(0.5);
+		Parameter<Double> p2 = new Parameter<>(p);
+		System.out.println(p.get());
+		System.out.println(p2.get());
+		p.set(1.0);
+		System.out.println(p.get());
+		System.out.println(p2.get());
 		MainFrame mf = new MainFrame();
 	}
 }
@@ -29,6 +37,8 @@ class MainFrame extends JFrame{
 }
 
 class MainPanel extends JPanel implements KeyListener{
+		Parameter<Double> p = new Parameter<>(12.5);
+		Parameter<Double> p2 = new Parameter<>(p);
 	MainPanel() {
 		setPreferredSize(new Dimension(500,500));
 		addKeyListener(this);
@@ -43,7 +53,10 @@ class MainPanel extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case KeyEvent.VK_R:
-				Data.add(new Rect(System.nanoTime()%300, System.nanoTime()%400, System.nanoTime()%50+50, System.nanoTime()%34+68));
+				Rect r = new Rect(System.nanoTime()%300, System.nanoTime()%400, System.nanoTime()%50+50, System.nanoTime()%34+68);
+				r.setX(p2);
+				Data.add(r);
+				//Data.add(new Rect(System.nanoTime()%300, System.nanoTime()%400, System.nanoTime()%50+50, System.nanoTime()%34+68));
 				break;
 			case KeyEvent.VK_C:
 				//Data.change(Data.history.peek().prev,new Rect(System.nanoTime()%300, System.nanoTime()%400, System.nanoTime()%50+50, System.nanoTime()%34+68));
@@ -99,12 +112,25 @@ class History{
 
 //DrawObjectに設定する各パラメータ
 class Parameter<T>{
-	T param;
+	Object param;
+	boolean flag;
 	Parameter(T _param) {
+		set(_param);
+	}
+	Parameter(Parameter<T> _param) {
+		set(_param);
+	}
+	void set(T _param) {
 		param = _param;
+		flag = false;
+	}
+	void set(Parameter<T> _param) {
+		param = _param;
+		flag = true;
 	}
 	T get() {
-		return param;
+		if(flag) return (T)((Parameter)param).get();
+		return (T)param;
 	}
 }
 
@@ -113,14 +139,47 @@ interface DrawObject{
 }
 
 class Rect implements DrawObject{
-	double x,y,w,h;
+	Parameter<Double> x,y,w,h;
+	Rect() {
+		this(0,0,0,0);
+	}
+	Rect(Parameter<Double> _x, Parameter<Double> _y, Parameter<Double> _w, Parameter<Double> _h) {
+		setX(_x);
+		setY(_y);
+		setW(_w);
+		setH(_h);
+	}
 	Rect(double _x, double _y, double _w, double _h) {
+		setX(_x);
+		setY(_y);
+		setW(_w);
+		setH(_h);
+	}
+	public void setX(Parameter<Double> _x) {
 		x = _x;
+	}
+	public void setY(Parameter<Double> _y) {
 		y = _y;
+	}
+	public void setW(Parameter<Double> _w) {
 		w = _w;
+	}
+	public void setH(Parameter<Double> _h) {
 		h = _h;
 	}
+	public void setX(double _x) {
+		setX(new Parameter<Double>(_x));
+	}
+	public void setY(double _y) {
+		setY(new Parameter<Double>(_y));
+	}
+	public void setW(double _w) {
+		setW(new Parameter<Double>(_w));
+	}
+	public void setH(double _h) {
+		setH(new Parameter<Double>(_h));
+	}
 	public void draw(Graphics2D g) {
-		g.drawRect((int)x,(int)y,(int)w,(int)h);
+		g.drawRect(x.get().intValue(),y.get().intValue(),w.get().intValue(),h.get().intValue());
 	}
 }
