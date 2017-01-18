@@ -10,6 +10,6 @@ class Main{
 		p.set(1.5);
 		System.out.println(p.get());
 		System.out.println(p2.get());
-		//MainFrame mf = new MainFrame();
+		MainFrame mf = new MainFrame();
 	}
 }
