@@ -1,23 +1,13 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.util.Scanner;
-import java.util.HashSet;
-import java.util.Stack;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import parameters.*;
+import variables.*;
 import window.*;
 
 class Main{
 	public static void main(String[] args) {
-		Parameter<Double> p = new Parameter<>(0.5);
-		Parameter<Double> p2 = new Parameter<>(p);
+		ReferenceVariable<Double> p = new ReferenceVariable<Double>(0.5);
+		ReferenceVariable<Double> p2 = new ReferenceVariable<Double>(p);
 		System.out.println(p.get());
 		System.out.println(p2.get());
-		p.set(false);
+		p.set(1.5);
 		System.out.println(p.get());
 		System.out.println(p2.get());
 		//MainFrame mf = new MainFrame();
