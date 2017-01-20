@@ -1,5 +1,6 @@
 import variables.*;
 import window.*;
+import functions.*;
 
 class Main{
 	public static void main(String[] args) {
