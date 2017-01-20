@@ -10,6 +10,7 @@ class Main{
 		p.set(1.5);
 		System.out.println(p.get());
 		System.out.println(p2.get());
+		Data.set = XmlUtil.read("save.svg");
 		MainFrame mf = new MainFrame();
 	}
 }
