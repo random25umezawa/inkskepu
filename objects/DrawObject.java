@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 
-import variables.ReferenceVariable;
+import variables.SimpleVariable;
 
 public abstract class DrawObject extends BaseObject{
 	//fill-rule:evenodd;
@@ -19,12 +19,12 @@ public abstract class DrawObject extends BaseObject{
 
 	public DrawObject(BaseObject _parent) {
 		super(_parent);
-		setAttr("fill",new ReferenceVariable<Color>(new Color(0)));
-		setAttr("fill-opacity",new ReferenceVariable<Double>(1.0));
-		setAttr("stroke",new ReferenceVariable<Color>(new Color(0)));
-		setAttr("stroke-width",new ReferenceVariable<Double>(1.0));
-		setAttr("stroke-miterlimit",new ReferenceVariable<Double>(1.0));
-		setAttr("stroke-opacity",new ReferenceVariable<Double>(1.0));
+		setAttr("fill",new SimpleVariable<Color>(new Color(0)));
+		setAttr("fill-opacity",new SimpleVariable<Double>(1.0));
+		setAttr("stroke",new SimpleVariable<Color>(new Color(0)));
+		setAttr("stroke-width",new SimpleVariable<Double>(1.0));
+		setAttr("stroke-miterlimit",new SimpleVariable<Double>(1.0));
+		setAttr("stroke-opacity",new SimpleVariable<Double>(1.0));
 	}
 
 	public void draw(Graphics2D g) {

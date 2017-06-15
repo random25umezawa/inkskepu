@@ -24,7 +24,7 @@ import java.util.Map;
 
 import objects.*;
 import functions.Data;
-import variables.ReferenceVariable;
+import variables.Variable;
 
 public class XmlUtil{
 	static Document doc;
@@ -78,7 +78,7 @@ public class XmlUtil{
 
 	public static Element writeObjectsToElements(BaseObject _bo) {
 		Element element = doc.createElement(_bo.getName());
-		for(Map.Entry<String,ReferenceVariable> _attr : _bo.getAttrs().entrySet()) {
+		for(Map.Entry<String,Variable> _attr : _bo.getAttrs().entrySet()) {
 			Object obj = _attr.getValue().get();
 			String value = obj.toString();
 			Class cls = obj.getClass();
