@@ -47,6 +47,7 @@ public class XmlUtil{
 			//svgの中の要素から
 			Element root = doc.getDocumentElement();
 			readElementsToCollection(root,null,_set);
+			/*
 			for(BaseObject _bo : _set) {
 				System.out.println(_bo.getName());
 				if(_bo instanceof GroupObject) {
@@ -55,10 +56,26 @@ public class XmlUtil{
 					}
 				}
 			}
+			*/
+
+			for(BaseObject _bo : _set) debug(_bo);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return _set;
+	}
+	static void debug(BaseObject _bo) {
+		System.out.print(_bo.getName());
+		if(_bo instanceof GroupObject) {
+			System.out.println("{");
+			for(BaseObject __bo : ((GroupObject)_bo).getChilds()) debug(__bo);
+			System.out.println("}");
+		}else {
+			for(java.util.Map.Entry<String,ReferenceVariable> entry : _bo.getAttrs().entrySet()) {
+				System.out.println(entry.getKey()+","+entry.getValue().get());
+			}
+			System.out.println();
+		}
 	}
 
 	public static void write(String fileName, HashSet<BaseObject> _data) {
