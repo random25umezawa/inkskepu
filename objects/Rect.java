@@ -3,19 +3,19 @@ package objects;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import variables.ReferenceVariable;
+import variables.SimpleVariable;
 
 public class Rect extends DrawObject{
 	public Rect(BaseObject _parent) {
 		super(_parent);
-		setAttr("x",new ReferenceVariable<Double>(0.0));
-		setAttr("y",new ReferenceVariable<Double>(0.0));
-		setAttr("width",new ReferenceVariable<Double>(0.0));
-		setAttr("height",new ReferenceVariable<Double>(0.0));
-		setAttr("rx",new ReferenceVariable<Double>(0.0));
-		setAttr("ry",new ReferenceVariable<Double>(0.0));
+		setAttr("x",new SimpleVariable<Double>(0.0));
+		setAttr("y",new SimpleVariable<Double>(0.0));
+		setAttr("width",new SimpleVariable<Double>(0.0));
+		setAttr("height",new SimpleVariable<Double>(0.0));
+		setAttr("rx",new SimpleVariable<Double>(0.0));
+		setAttr("ry",new SimpleVariable<Double>(0.0));
 	}
-	public Rect(BaseObject _parent, ReferenceVariable<Double> _x, ReferenceVariable<Double> _y, ReferenceVariable<Double> _w, ReferenceVariable<Double> _h, ReferenceVariable<Double> _rx, ReferenceVariable<Double> _ry) {
+	public Rect(BaseObject _parent, SimpleVariable<Double> _x, SimpleVariable<Double> _y, SimpleVariable<Double> _w, SimpleVariable<Double> _h, SimpleVariable<Double> _rx, SimpleVariable<Double> _ry) {
 		super(_parent);
 		setAttr("x",_x);
 		setAttr("y",_y);
@@ -26,12 +26,12 @@ public class Rect extends DrawObject{
 	}
 	public Rect(BaseObject _parent, double _x, double _y, double _w, double _h, double _rx, double _ry) {
 		super(_parent);
-		setAttr("x",new ReferenceVariable<Double>(_x));
-		setAttr("y",new ReferenceVariable<Double>(_y));
-		setAttr("width",new ReferenceVariable<Double>(_w));
-		setAttr("height",new ReferenceVariable<Double>(_h));
-		setAttr("rx",new ReferenceVariable<Double>(_rx));
-		setAttr("ry",new ReferenceVariable<Double>(_ry));
+		setAttr("x",new SimpleVariable<Double>(_x));
+		setAttr("y",new SimpleVariable<Double>(_y));
+		setAttr("width",new SimpleVariable<Double>(_w));
+		setAttr("height",new SimpleVariable<Double>(_h));
+		setAttr("rx",new SimpleVariable<Double>(_rx));
+		setAttr("ry",new SimpleVariable<Double>(_ry));
 	}
 
 	@Override

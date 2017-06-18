@@ -1,5 +1,4 @@
 package objects;
-
 /*
 DrawObjectとGroupObjectの親クラスです。
 要するにVector画像のアイテム全般の基底クラスです。
@@ -10,11 +9,12 @@ import java.awt.Graphics2D;
 
 import java.util.HashMap;
 
-import variables.ReferenceVariable;
+import variables.Variable;
 
+@SuppressWarnings("unchecked")
 public abstract class BaseObject{
 	BaseObject parent;
-	HashMap<String,ReferenceVariable> attr;
+	HashMap<String,Variable> attr;
 	public BaseObject(BaseObject _parent) {
 		parent = _parent;
 		attr = new HashMap<>();
@@ -23,7 +23,7 @@ public abstract class BaseObject{
 	public abstract void draw(Graphics2D g);
 
 	public abstract String getName();
-	public HashMap<String,ReferenceVariable> getAttrs() {
+	public HashMap<String,Variable> getAttrs() {
 		return attr;
 	}
 
@@ -34,32 +34,24 @@ public abstract class BaseObject{
 //追加、変更用
 	public boolean setAttr(String _name, String _value) {
 		if(attr.containsKey(_name)) {
-			ReferenceVariable rv = attr.get(_name);
-			ReferenceVariable _rv = null;
-			try{
-				Class cls = rv.get().getClass();
-				if(cls == Double.class) _rv = new ReferenceVariable<Double>(Double.parseDouble(_value));
-				if(cls == String.class) _rv = new ReferenceVariable<String>(_value);
-				if(cls == Color.class) _rv = new ReferenceVariable<Color>(Color.decode(_value));
-			}catch(Exception e) {
-				//なかったことに
-				e.printStackTrace();
-			}
+			Variable rv = attr.get(_name);
+			Variable _rv = rv.clone();
+			_rv.set(_value);
 			if(_rv != null) {
 				attr.put(_name,_rv);
 				return true;
 			}
 			return false;
 		}else {
-			//attr.put(_name,new ReferenceVariable<String>(_value));
 			return true;
 		}
 	}
 
 //初期化用
-	public boolean setAttr(String _name, ReferenceVariable _value) {
+	public boolean setAttr(String _name, Variable _value) {
 		if(attr.containsKey(_name)) {
-			ReferenceVariable rv = attr.get(_name);
+			Variable rv = attr.get(_name);
+			//クラスが同じなら入れる
 			if(rv.get().getClass() == _value.get().getClass()) {
 				attr.put(_name,_value);
 				return true;
