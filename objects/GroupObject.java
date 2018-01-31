@@ -2,6 +2,7 @@ package objects;
 
 import java.awt.Graphics2D;
 
+import java.util.Map;
 import java.util.ArrayList;
 
 public abstract class GroupObject extends BaseObject{
@@ -29,4 +30,16 @@ public abstract class GroupObject extends BaseObject{
 	}
 
 	abstract void applyAttr(Graphics2D g);
+
+	public void debug(String _indent) {
+		System.out.print(_indent+"<"+getName());
+		for(Map.Entry entry : attr.entrySet()) {
+			System.out.print("\n"+_indent+"\t"+entry.getKey()+"=\""+entry.getValue()+"\"");
+		}
+		System.out.println(" >");
+		for(BaseObject _bo : getChilds()) {
+			_bo.debug(_indent+"\t");
+		}
+		System.out.println("</"+getName()+">");
+	}
 }

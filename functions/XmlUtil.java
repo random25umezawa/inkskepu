@@ -79,11 +79,7 @@ public class XmlUtil{
 	public static Element writeObjectsToElements(BaseObject _bo) {
 		Element element = doc.createElement(_bo.getName());
 		for(Map.Entry<String,Variable> _attr : _bo.getAttrs().entrySet()) {
-			Object obj = _attr.getValue().get();
-			String value = obj.toString();
-			Class cls = obj.getClass();
-			if(cls == Color.class) value = String.format("#%02x%02x%02x",((Color)obj).getRed(),((Color)obj).getGreen(),((Color)obj).getBlue());
-			element.setAttribute(_attr.getKey(),""+value);
+			element.setAttribute(_attr.getKey(),""+_attr.getValue().toString());
 		}
 		if(_bo instanceof GroupObject) {
 			GroupObject _go = (GroupObject) _bo;

@@ -7,6 +7,7 @@ DrawObjectとGroupObjectの親クラスです。
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import java.util.Map;
 import java.util.HashMap;
 
 import variables.Variable;
@@ -52,7 +53,7 @@ public abstract class BaseObject{
 		if(attr.containsKey(_name)) {
 			Variable rv = attr.get(_name);
 			//クラスが同じなら入れる
-			if(rv.get().getClass() == _value.get().getClass()) {
+			if(rv.getT() == _value.getT()) {
 				attr.put(_name,_value);
 				return true;
 			}else {
@@ -64,7 +65,15 @@ public abstract class BaseObject{
 		}
 	}
 
-	<T> T getAttr(String _name) {
-		return (T)attr.get(_name).get();
+	Variable getAttr(String _name) {
+		return attr.get(_name);
+	}
+
+	public void debug(String _indent) {
+		System.out.print(_indent+"<"+getName());
+		for(Map.Entry entry : attr.entrySet()) {
+			System.out.print("\n"+_indent+"\t"+entry.getKey()+"=\""+entry.getValue()+"\"");
+		}
+		System.out.println(" />");
 	}
 }

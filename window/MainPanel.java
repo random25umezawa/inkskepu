@@ -27,7 +27,13 @@ class MainPanel extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case KeyEvent.VK_R:
-				Rect r = new Rect(Data.mother,System.nanoTime()%300, System.nanoTime()%400, System.nanoTime()%50+50, System.nanoTime()%34+68, 5, 5);
+				Rect r = new Rect(Data.mother);
+				r.setAttr("x",""+System.nanoTime()%300);
+				r.setAttr("y",""+System.nanoTime()%400);
+				r.setAttr("width",""+System.nanoTime()%50+50);
+				r.setAttr("height",""+System.nanoTime()%34+68);
+				r.setAttr("rx","5");
+				r.setAttr("ry","5");
 				Data.add(r);
 				break;
 			case KeyEvent.VK_S:

@@ -1,8 +1,8 @@
 package variables;
 
 //BaseObjectに設定する各パラメータ
-public abstract class Variable<T> implements Cloneable{
-	public abstract T get();
+public abstract class Variable implements Cloneable{
+	//public abstract <T> T get();
 	public abstract void set(String _s);
 
 	public Variable clone() {
@@ -15,6 +15,10 @@ public abstract class Variable<T> implements Cloneable{
 			e.printStackTrace();
 		}
 		return _value;
+	}
+
+	public Class getT() {
+		return Object.class;
 	}
 
 	public void cloneMore(Variable _value) {

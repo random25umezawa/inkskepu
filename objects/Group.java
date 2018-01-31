@@ -16,4 +16,9 @@ public class Group extends GroupObject{
 	public String getName() {
 		return "g";
 	}
+
+	@Override
+	public void debug(String _indent) {
+		System.out.println(_indent+getName());
+	}
 }

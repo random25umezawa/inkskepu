@@ -6,15 +6,15 @@ svg要素のこと
 
 import java.awt.Graphics2D;
 
-import variables.SimpleVariable;
+import variables.StringVariable;
 
 public class Svg extends GroupObject{
 	public Svg(BaseObject _parent) {
 		super(_parent);
-		setAttr("viewBox",new SimpleVariable<String>("0,0,500,500"));
-		setAttr("xmlns:svg",new SimpleVariable<String>("http://www.w3.org/2000/svg"));
-		setAttr("xmlns",new SimpleVariable<String>("http://www.w3.org/2000/svg"));
-		setAttr("xmlns:xlink",new SimpleVariable<String>("http://www.w3.org/1999/xlink"));
+		setAttr("viewBox",new StringVariable("0,0,500,500"));
+		setAttr("xmlns:svg",new StringVariable("http://www.w3.org/2000/svg"));
+		setAttr("xmlns",new StringVariable("http://www.w3.org/2000/svg"));
+		setAttr("xmlns:xlink",new StringVariable("http://www.w3.org/1999/xlink"));
 	}
 
 /*
